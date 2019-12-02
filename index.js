@@ -1,11 +1,25 @@
+// Part 1 logic - calculate fuel needed for all the modules
 function calculateFuelWithMass(mass) {
   const beforeSubtraction = Math.floor(mass / 3);
   return beforeSubtraction > 2 ? beforeSubtraction - 2 : 0;
 }
 
+// Part 2 logic - calculate fuel needed for all the modules + fuels
+function calculateFuelWithFuel(fuel) {
+  const beforeSubtraction = Math.floor(fuel / 3);
+  if (beforeSubtraction <= 2) {
+    return fuel;
+  }
+  return fuel + calculateFuelWithFuel(beforeSubtraction - 2);
+}
+
+// solution
 function getTotalFuelSum(inputArr) {
   return inputArr.reduce((acc, mass) => {
-    return acc + calculateFuelWithMass(mass);
+    // part 1
+    // return acc + calculateFuelWithMass(mass);
+    // part 2
+    return acc + calculateFuelWithFuel(calculateFuelWithMass(mass));
   }, 0);
 }
 
@@ -13,6 +27,7 @@ function solution(rawInput) {
   const inputArr = rawInput.split('\n');
   return getTotalFuelSum(inputArr);
 }
+
 
 const input = `148319
 54894
