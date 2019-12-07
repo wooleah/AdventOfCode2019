@@ -50,7 +50,6 @@ function getOutput(input) {
       case opcode.OUTPUT:
         output = inputArr[inputArr[instructionPointer + 1]];
         nextOpcodePos = 2;
-        console.log(output);
         break;
       case opcode.ADD:
       case opcode.MULTIPLY:
